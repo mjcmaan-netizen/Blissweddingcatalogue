@@ -1,0 +1,324 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fffaf0">
+  <title>Bliss Wedding Catalogue | Bliss Giftings</title>
+  <meta name="description" content="Explore wedding gifting collections by occasion with Bliss Giftings.">
+  <style>
+    :root {
+      --gold: #b18a45;
+      --dark-gold: #80602a;
+      --ivory: #fffaf0;
+      --cream: #f7efdf;
+      --ink: #30271e;
+      --muted: #756b60;
+      --white: #fff;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--ivory);
+      font-family: Georgia, "Times New Roman", serif;
+    }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; }
+    .topbar {
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border-bottom: 1px solid #e7d8b8;
+      background: rgba(255,250,240,.96);
+      position: sticky;
+      top: 0;
+      z-index: 5;
+    }
+    .brand { font-size: 20px; font-weight: bold; letter-spacing: 1px; }
+    .brand small {
+      display: block;
+      margin-top: 4px;
+      font: 10px Arial, sans-serif;
+      letter-spacing: 3px;
+      color: var(--dark-gold);
+    }
+    .top-link {
+      font: 13px Arial, sans-serif;
+      color: var(--dark-gold);
+      text-decoration: none;
+    }
+    .hero {
+      padding: 76px 22px 68px;
+      text-align: center;
+      background:
+        radial-gradient(ellipse at top, #fff 0%, transparent 62%),
+        linear-gradient(145deg, #f5e8c9, var(--ivory) 58%, #eee0c1);
+      border-bottom: 1px solid #e7d8b8;
+    }
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      font: 11px Arial, sans-serif;
+      color: var(--dark-gold);
+    }
+    h1 {
+      font-size: clamp(38px, 9vw, 68px);
+      line-height: 1.08;
+      font-weight: normal;
+      margin: 22px auto 16px;
+      max-width: 780px;
+    }
+    .hero p {
+      max-width: 530px;
+      margin: 0 auto 28px;
+      color: var(--muted);
+      font: 16px/1.8 Arial, sans-serif;
+    }
+    .button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 14px 23px;
+      border-radius: 3px;
+      border: 1px solid var(--gold);
+      background: var(--gold);
+      color: white;
+      text-decoration: none;
+      font: 13px Arial, sans-serif;
+      cursor: pointer;
+    }
+    .button.secondary {
+      background: transparent;
+      color: var(--dark-gold);
+    }
+    section { padding: 54px 18px; }
+    .section-head { text-align: center; margin-bottom: 30px; }
+    .section-head h2 { font-size: 31px; font-weight: normal; margin: 10px 0; }
+    .section-head p {
+      color: var(--muted);
+      font: 14px/1.7 Arial, sans-serif;
+      max-width: 570px;
+      margin: 0 auto;
+    }
+    .occasion-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .occasion {
+      min-height: 104px;
+      padding: 17px 12px;
+      border: 1px solid #e4d3ad;
+      background: rgba(255,255,255,.65);
+      text-align: center;
+      color: var(--ink);
+      cursor: pointer;
+      font: 16px Georgia, serif;
+      transition: .2s;
+    }
+    .occasion:hover, .occasion:focus {
+      background: #f3e6c9;
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+    .occasion span {
+      display: block;
+      font: 10px Arial, sans-serif;
+      letter-spacing: 2px;
+      color: var(--dark-gold);
+      margin-bottom: 10px;
+    }
+    .detail {
+      max-width: 900px;
+      margin: 30px auto 0;
+      padding: 22px;
+      border: 1px solid #e4d3ad;
+      background: #fff;
+      display: none;
+    }
+    .detail.show { display: block; }
+    .detail h3 { font-size: 25px; font-weight: normal; margin: 0 0 10px; }
+    .detail p { font: 14px/1.7 Arial, sans-serif; color: var(--muted); }
+    .detail-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .sheet-frame {
+      width: 100%;
+      height: 600px;
+      border: 1px solid #e4d3ad;
+      background: white;
+      margin-top: 20px;
+    }
+    .note { font: 12px/1.6 Arial, sans-serif; color: var(--muted); }
+    .how {
+      background: var(--cream);
+      text-align: center;
+    }
+    .how-inner { max-width: 720px; margin: auto; }
+    .how-inner p { font: 15px/1.9 Arial, sans-serif; color: var(--muted); }
+    footer {
+      padding: 30px 20px;
+      text-align: center;
+      background: #30271e;
+      color: #f8ecd3;
+      font: 12px/1.9 Arial, sans-serif;
+    }
+    footer a { color: #e9c982; }
+    @media (min-width: 650px) {
+      .occasion-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .hero { padding-top: 105px; padding-bottom: 95px; }
+    }
+    @media (min-width: 900px) {
+      .occasion-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      BLISS
+      <small>WEDDING CATALOGUE</small>
+    </div>
+    <a class="top-link" href="#occasions">EXPLORE COLLECTION</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow">Thoughtfully curated • Beautifully presented</div>
+      <h1>Celebrate Every<br>Wedding Moment</h1>
+      <p>
+        Discover thoughtful gifting, elegant wedding details and
+        beautiful celebrations with Bliss Giftings.
+      </p>
+      <a class="button" href="#occasions">Explore by Occasion</a>
+    </section>
+
+    <section id="occasions">
+      <div class="section-head">
+        <div class="eyebrow">Find your celebration</div>
+        <h2>What occasion are you shopping for?</h2>
+        <p>Select an occasion to explore the catalogue and enquire about
+          products for your celebration.</p>
+      </div>
+
+      <div class="occasion-grid" id="occasionGrid"></div>
+
+      <div class="detail" id="detail" aria-live="polite">
+        <div class="eyebrow">Your selected occasion</div>
+        <h3 id="selectedTitle"></h3>
+        <p>
+          Browse the published product workbook below. Product availability
+          and pricing should be confirmed before your order is finalised.
+        </p>
+        <div class="detail-actions">
+          <a id="whatsappLink" class="button" target="_blank"
+             rel="noopener noreferrer">Enquire on WhatsApp</a>
+          <a class="button secondary" href="#catalogueData">View Workbook</a>
+        </div>
+        <p class="note">
+          This initial version opens the published workbook. Automatic
+          filtering to show only products assigned to this occasion will
+          be connected in the next integration step.
+        </p>
+      </div>
+    </section>
+
+    <section class="how" id="about">
+      <div class="how-inner">
+        <div class="eyebrow">Bliss Giftings</div>
+        <h2 style="font-weight:normal">Made for meaningful moments</h2>
+        <p>
+          Explore wedding gifting by occasion. Choose your products,
+          then contact us on WhatsApp to discuss your selection,
+          quantities, availability and delivery.
+        </p>
+        <a class="button" href="#occasions">Browse Occasions</a>
+      </div>
+    </section>
+
+    <section id="catalogueData">
+      <div class="section-head">
+        <div class="eyebrow">Product workbook</div>
+        <h2>Explore the Catalogue</h2>
+        <p>
+          The published workbook is available below. This is the source
+          catalogue while the live product-filter connection is being
+          completed.
+        </p>
+      </div>
+      <iframe class="sheet-frame"
+        title="Bliss Giftings published product workbook"
+        src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTretwKKOCok1LLbuu-K0QIRzaZLgXP784aDmFxfA6OjeFvM9Jg0J5lC10S1P3nlTyTuE4GowHEcr-a/pubhtml?widget=true&amp;headers=false">
+      </iframe>
+      <p class="note" style="text-align:center">
+        If the workbook does not display in your browser, use the direct link below.
+        <br>
+        <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vTretwKKOCok1LLbuu-K0QIRzaZLgXP784aDmFxfA6OjeFvM9Jg0J5lC10S1P3nlTyTuE4GowHEcr-a/pubhtml"
+           target="_blank" rel="noopener noreferrer">Open published workbook</a>
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <div>BLISS GIFTINGS</div>
+    <div>Wedding & Marriage Gifting Catalogue</div>
+    <div>Orders and enquiries:
+      <a href="https://wa.me/919998920644" target="_blank"
+         rel="noopener noreferrer">WhatsApp +91 99989 20644</a>
+    </div>
+    <div>Product prices and availability are subject to confirmation.</div>
+  </footer>
+
+  <script>
+    const WHATSAPP_NUMBER = "919998920644";
+
+    const occasions = [
+      "Baat Pakki",
+      "Kankotri Lekhan",
+      "Bachelorette",
+      "Mehndi",
+      "Haldi",
+      "Sangeet",
+      "Ganesh Puja / Mandva Muhurat / Grah Shanti",
+      "Mameru",
+      "Mata Ki Chowki",
+      "Baraat Welcome",
+      "Shaadi",
+      "Nikaah",
+      "Grih Pravesh",
+      "Reception"
+    ];
+
+    const grid = document.getElementById("occasionGrid");
+    const detail = document.getElementById("detail");
+    const selectedTitle = document.getElementById("selectedTitle");
+    const whatsappLink = document.getElementById("whatsappLink");
+
+    occasions.forEach((occasion, index) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "occasion";
+      button.innerHTML =
+        `<span>OCCASION ${(index + 1).toString().padStart(2, "0")}</span>` +
+        `<strong>${occasion}</strong>`;
+      button.addEventListener("click", () => {
+        selectedTitle.textContent = occasion;
+        const message =
+          `Hello Bliss Giftings! I am looking for products for ${occasion}. ` +
+          `Please share the relevant products, prices and availability.`;
+        whatsappLink.href =
+          `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+        detail.classList.add("show");
+        detail.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+      grid.appendChild(button);
+    });
+  </script>
+</body>
+</html>
